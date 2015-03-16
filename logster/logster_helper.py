@@ -82,21 +82,21 @@ class CloudWatch:
         self.secret_key = secret_key
         self.metric = metric
 
-    def get_instance_id(self, instance_id = None):
-        """ get instance id from amazon meta data server """
+    # def get_instance_id(self, instance_id = None):
+    #     """ get instance id from amazon meta data server """
 
-        self.instance_id = instance_id
+    #     self.instance_id = instance_id
 
-        if self.instance_id is None: 
-            try:
-                conn = HTTPConnection("169.254.169.254")
-                conn.request("GET", "/latest/meta-data/instance-id")
-            except Exception:
-                raise CloudWatchException("Can't connect Amazon meta data server to get InstanceID : (%s)")
+    #     if self.instance_id is None: 
+    #         try:
+    #             conn = HTTPConnection("169.254.169.254")
+    #             conn.request("GET", "/latest/meta-data/instance-id")
+    #         except Exception:
+    #             raise CloudWatchException("Can't connect Amazon meta data server to get InstanceID : (%s)")
 
-            self.instance_id = conn.getresponse().read()
+    #         self.instance_id = conn.getresponse().read()
         
-        return self
+    #     return self
 
     def set_params(self):
 
@@ -104,8 +104,9 @@ class CloudWatch:
        'MetricData.member.1.MetricName': self.metric.name,
        'MetricData.member.1.Value': self.metric.value,
        'MetricData.member.1.Unit': self.metric.units,
-       'MetricData.member.1.Dimensions.member.1.Name': 'InstanceID',
-       'MetricData.member.1.Dimensions.member.1.Value': self.instance_id}       
+       # 'MetricData.member.1.Dimensions.member.1.Name': 'InstanceID',
+       # 'MetricData.member.1.Dimensions.member.1.Value': self.instance_id
+        }
      
         self.url_params = params
         self.url_params['AWSAccessKeyId'] = self.key

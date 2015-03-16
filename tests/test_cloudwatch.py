@@ -10,7 +10,8 @@ class TestCloudWatch(unittest.TestCase):
         self.metric.timestamp = strftime("%Y%m%dT%H:%M:00Z", gmtime(self.metric.timestamp))
 
         self.cw = CloudWatch("key", "secretkey", self.metric)
-        self.cw.get_instance_id("myserverID").set_params().get_signed_url()
+        # self.cw.get_instance_id("myserverID").set_params().get_signed_url()
+        self.cw.set_params().get_signed_url()
 
     def test_params(self):
 

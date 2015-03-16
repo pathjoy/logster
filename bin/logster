@@ -270,7 +270,7 @@ def submit_cloudwatch(metrics, options):
 
         if (not options.dry_run):
             try:
-                cw = CloudWatch(options.aws_key, options.aws_secret_key, metric).get_instance_id()
+                cw = CloudWatch(options.aws_key, options.aws_secret_key, metric)
             except CloudWatchException:
                 logger.debug("Is this machine really amazon EC2?")
                 sys.exit(1)
